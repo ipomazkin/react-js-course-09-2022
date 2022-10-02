@@ -4,10 +4,10 @@ export const divide = (a, b) => a / b;
 
 export const product = (a, b) => a * b;
 
-export const addLogging = (sum) => {
+export const addLogging = (func) => {
   return (...args) => {
     console.log(...args);
-    return sum(...args);
+    return func(...args);
   }
 }
 

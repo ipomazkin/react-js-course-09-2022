@@ -5,16 +5,22 @@ export class Parent extends Component {
   constructor(props) {
     super(props);
 
+    const { test } = this.props
+
     this.state = {
       isOpen: false
     }
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
+    const { test } = this.props
+
     return true
   }
 
   render() {
+    const { test } = this.props
+
     console.log('Parent is rendering now')
     const { isOpen } = this.state
 
@@ -34,4 +40,8 @@ export class Parent extends Component {
       </div>
     )
   }
+}
+
+Parent.defaultProps = {
+  test: 123
 }
