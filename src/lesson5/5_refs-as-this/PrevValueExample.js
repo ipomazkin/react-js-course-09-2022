@@ -1,17 +1,30 @@
 /**
  * @description The PrevValueExample component.
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 export function PrevValueExample(props) {
   const [postId, setPostId] = useState(null)
 
+  const prevPostIdRef = useRef(postId)
+
   useEffect(() => {
     const currentPostId = postId
-    const prevPostId = '???'
+    const prevPostId = prevPostIdRef.current
 
     console.log(currentPostId, prevPostId)
+  }, [postId])
+
+  useEffect(() => {
+    const currentPostId = postId
+    const prevPostId = prevPostIdRef.current
+
+    console.log(currentPostId, prevPostId)
+  }, [postId])
+
+  useEffect(() => {
+    prevPostIdRef.current = postId
   }, [postId])
 
   return (

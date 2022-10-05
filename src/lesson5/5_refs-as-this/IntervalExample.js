@@ -1,14 +1,19 @@
 /**
  * @description The IntervalExample component.
  */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export function IntervalExample(props) {
   const [counter, setCounter] = useState(0)
 
+  const counterRef = useRef(counter) // { current: null }
+  useEffect(() => {
+    counterRef.current = counter;
+  }, [counter])
+
   useEffect(() => {
     const tid = setInterval(() => {
-      console.log('counter:', counter)
+      console.log('counter:', counterRef.current)
     }, 500)
 
     return () => {

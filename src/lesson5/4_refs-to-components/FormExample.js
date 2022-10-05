@@ -1,11 +1,15 @@
 /**
  * @description The FormExample component.
  */
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
 
 export function FormExample(props) {
   const formApiRef = useRef(null);
+
+  useEffect(() => {
+    formApiRef.current.setDefaultValue('John', 'Smith')
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -13,12 +17,15 @@ export function FormExample(props) {
 
   return (
     <div>
+      <div>
+        <button onClick={() => formApiRef.current.reset()}>reset</button>
+      </div>
       <Form ref={formApiRef} onSubmit={handleSubmit} />
     </div>
   );
 }
 
-const Form = (props) => {
+const Form = React.forwardRef((props, ref) => {
   const { onSubmit } = props
 
   const firstNameRef = useRef(null)
@@ -33,6 +40,24 @@ const Form = (props) => {
     firstNameRef.current.value = defaultFirstName;
     lastNameRef.current.value = defaultLastName;
   }, [])
+
+  useImperativeHandle(ref, () => {
+    return {
+      firstName: firstNameRef,
+      lastName: lastNameRef,
+      reset,
+      setDefaultValue,
+    }
+  })
+
+  // if (typeof ref === 'object') {
+  //   ref.current = {
+  //     firstName: firstNameRef,
+  //     lastName: lastNameRef,
+  //     reset,
+  //     setDefaultValue,
+  //   }
+  // }
 
   return (
     <form onSubmit={onSubmit}>
@@ -55,7 +80,7 @@ const Form = (props) => {
       </div>
     </form>
   );
-}
+})
 
 Form.propTypes = {
   onSubmit: PropTypes.func

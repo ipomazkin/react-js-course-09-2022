@@ -1,23 +1,31 @@
 /**
  * @description The FunctionalComponentExample component.
  */
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 export function FunctionalComponentExample(props) {
+  const firstNameRef = useRef(null)
+
+  useEffect(() => {
+    console.log('firstNameRef:', firstNameRef)
+  }, [])
+
   return (
     <form action="">
       <div>
         <label>
           <span>First name: </span>
-          <input type="text" name="firstName" />
+          <input ref={firstNameRef} type="text" name="firstName" />
         </label>
       </div>
 
       <div>
         <label>
           <span>Last name: </span>
-          <input type="text" name="lastName" />
+          <input ref={(node) => {
+            console.log('lastName:', node)
+          }} type="text" name="lastName" />
         </label>
       </div>
     </form>

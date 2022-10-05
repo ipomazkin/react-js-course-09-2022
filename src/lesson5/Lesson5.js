@@ -24,7 +24,12 @@ import { PrevValueExample } from './5_refs-as-this/PrevValueExample'
 export function Lesson5(props) {
   return (
     <>
-      <AnimationExample />
+      {/*<ClassComponentExample />*/}
+      {/*<FunctionalComponentExample />*/}
+      {/*<FormExampleDeclarative />*/}
+      {/*<DomApiExample />*/}
+      {/*<AnimationExample />*/}
+      <PrevValueExample />
     </>
   );
 }

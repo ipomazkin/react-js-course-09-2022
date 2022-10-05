@@ -1,7 +1,7 @@
 /**
  * @description The FunctionalComponentWithRefExample component.
  */
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 export function FunctionalComponentWithRefExample() {
   return (
@@ -11,8 +11,8 @@ export function FunctionalComponentWithRefExample() {
   );
 }
 
-function Input() {
+const Input = forwardRef((props, ref) => {
   return (
-    <input type="text"/>
+    <input ref={ref} type="text"/>
   )
-}
+})
