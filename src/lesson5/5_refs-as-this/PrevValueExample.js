@@ -1,0 +1,30 @@
+/**
+ * @description The PrevValueExample component.
+ */
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
+export function PrevValueExample(props) {
+  const [postId, setPostId] = useState(null)
+
+  useEffect(() => {
+    const currentPostId = postId
+    const prevPostId = '???'
+
+    console.log(currentPostId, prevPostId)
+  }, [postId])
+
+  return (
+    <div className="">
+      <ul>
+        <li>Post #1: <button onClick={() => setPostId(1)}>select</button></li>
+        <li>Post #2: <button onClick={() => setPostId(2)}>select</button></li>
+        <li>Post #3: <button onClick={() => setPostId(3)}>select</button></li>
+      </ul>
+    </div>
+  );
+}
+
+PrevValueExample.propTypes = {};
+
+PrevValueExample.defaultProps = {};
