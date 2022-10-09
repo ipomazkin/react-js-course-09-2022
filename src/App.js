@@ -5,13 +5,14 @@ import { Lesson2 } from "./lesson2/Lesson2";
 import { Lesson3 } from "./lesson3/Lesson3";
 import { Lesson4 } from "./lesson4/Lesson4";
 import { Lesson5 } from "./lesson5/Lesson5";
+import { Lesson6 } from "./lesson6/Lesson6";
 import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   return (
     <>
       <CssBaseline />
-      <Lesson5/>
+      <Lesson6/>
     </>
   );
 }
