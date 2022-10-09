@@ -1,8 +1,8 @@
 /**
  * @description The LocaleContextExample component.
  */
-import React, { useMemo, useState } from 'react';
-import { LocaleContext, LOCALE_UK } from "./LocaleContext";
+import React, { useMemo, useState, useContext } from 'react';
+import { LocaleContext, LOCALE_UK, LOCALE_EN, LOCALE_PL } from "./LocaleContext";
 
 export function LocaleContextExample() {
   const [locale, setLocale] = useState(LOCALE_UK)
@@ -10,7 +10,7 @@ export function LocaleContextExample() {
   const localeContextValue = useMemo(() => ({
     locale,
     setLocale,
-  }), [])
+  }), [locale])
 
   return (
     <LocaleContext.Provider value={localeContextValue}>
@@ -40,13 +40,33 @@ function ChildrenLevel2() {
 }
 
 function HookContextConsumer() {
+  const localeContext = useContext(LocaleContext)
+
   return (
-    <div>Current locale: </div>
+    <div>
+      <div>Current locale: {localeContext.locale}</div>
+      <ul>
+        <li><button onClick={() => localeContext.setLocale(LOCALE_UK)}>{LOCALE_UK}</button></li>
+        <li><button onClick={() => localeContext.setLocale(LOCALE_EN)}>{LOCALE_EN}</button></li>
+        <li><button onClick={() => localeContext.setLocale(LOCALE_PL)}>{LOCALE_PL}</button></li>
+      </ul>
+    </div>
   )
 }
 
 function RenderPropContextConsumer() {
   return (
-    <div>Current locale: </div>
+    <div>
+      <LocaleContext.Consumer>{(localeContext) => (
+        <div>
+          <div>Current locale: {localeContext.locale}</div>
+          <ul>
+            <li><button onClick={() => localeContext.setLocale(LOCALE_UK)}>{LOCALE_UK}</button></li>
+            <li><button onClick={() => localeContext.setLocale(LOCALE_EN)}>{LOCALE_EN}</button></li>
+            <li><button onClick={() => localeContext.setLocale(LOCALE_PL)}>{LOCALE_PL}</button></li>
+          </ul>
+        </div>
+      )}</LocaleContext.Consumer>
+    </div>
   )
 }

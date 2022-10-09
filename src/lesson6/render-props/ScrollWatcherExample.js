@@ -25,6 +25,16 @@ export function ScrollWatcherExample(props) {
         <p key={index}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aut distinctio eius est, itaque laboriosam
           minima nisi quas quod sapiente.</p>
       ))}
+
+      <h1>
+        <ScrollWatcher>
+          {
+            ({ x, y }) => (
+              <span>Scroll position is ({x}, {y})</span>
+            )
+          }
+        </ScrollWatcher>
+      </h1>
     </div>
   );
 }

@@ -27,7 +27,13 @@ export function ScrollWatcher(props) {
     }
   }, [])
 
-  return children(scrollPosition);
+  return (
+    <div>
+      <div>
+        {children(scrollPosition)}
+      </div>
+    </div>
+  );
 }
 
 ScrollWatcher.propTypes = {
