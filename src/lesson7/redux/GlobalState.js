@@ -3,7 +3,7 @@
  */
 import React, { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Provider } from "react-redux";
+import { Provider, useSelector, useDispatch } from "react-redux";
 import { store } from "./redux/store";
 
 const categories = [
@@ -30,7 +30,9 @@ export function GlobalState(props) {
 }
 
 function AppContent() {
-  const selectedCategories = []
+  const selectedCategories = useSelector((globalState) => {
+    return globalState.categories.selectedCategories;
+  })
   const selectedCategoriesData = useMemo(() => categories.filter((category) => selectedCategories.includes(category.id)), [selectedCategories])
 
   return (
@@ -70,9 +72,29 @@ function CategoriesList() {
 }
 
 function CategoryButton({id, title}) {
-  const isActive = false
-  const add = () => {}
-  const remove = () => {}
+  const dispatch = useDispatch() // store.dispatch
+  const isActive = useSelector((globalState) => {
+    const selectedCatId = globalState.categories.selectedCategories.find((catId) => catId === id)
+    return !!selectedCatId
+  })
+
+  const add = (id) => {
+    dispatch({
+      type: 'select',
+      payload: {
+        id
+      }
+    })
+  }
+
+  const remove = () => {
+    dispatch({
+      type: 'unselect',
+      payload: {
+        id
+      }
+    })
+  }
 
   const handleClick = useCallback(() => {
     if (isActive) {

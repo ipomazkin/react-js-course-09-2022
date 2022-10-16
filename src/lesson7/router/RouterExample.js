@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, BrowserRouter, Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { NewsItemPage } from "./pages/NewsItemPage";
 import { NewsListPage } from "./pages/NewsListPage";
@@ -16,7 +16,7 @@ export function RouterExample(props) {
     <HashRouter>
       <Box>
         <Routes>
-          <Route path="/" index={true} element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/news" element={<NewsListPage />} />
           <Route path="/news/:id" element={<NewsItemPage />} />
           <Route path="*" element={<Page404 />} />
