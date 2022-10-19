@@ -10,9 +10,9 @@ import { App as AppExampleReduxToolkit } from './4_redux-toolkit/App'
 
 export function Lesson8(props) {
   return (
-    <AppExampleRedux />
+    // <AppExampleRedux />
     // <AppExampleThunk />
-    // <AppExampleReduxToolkit />
+    <AppExampleReduxToolkit />
   );
 }
 

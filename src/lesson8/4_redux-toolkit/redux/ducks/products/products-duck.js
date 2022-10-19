@@ -16,7 +16,13 @@ const initialState = {
   error: null,
 }
 
-export const {actions: {loadStart, loadEnd}, reducer} = createSlice({
+export const {
+  actions: {
+    loadStart,
+    loadEnd
+  },
+  reducer
+} = createSlice({
   name: namespace,
   initialState,
   reducers: {
